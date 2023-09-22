@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form } from 'react-router-dom';
+import { Form, Link } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import app from '../../firebase/firebase.config';
 
@@ -31,7 +31,7 @@ const Login = () => {
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col">
                 <div className="text-center lg:text-left">
-                <h1 className="text-5xl font-bold">Login now!</h1>
+                <h1 className="text-5xl font-bold">Please Login now!</h1>
                 </div>
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                 <Form onSubmit={handleLogin} className="card-body">
@@ -58,6 +58,9 @@ const Login = () => {
                     </div>
                     <div className="form-control mt-6">
                     <button type="submit" className="btn btn-primary">Login</button>
+                    </div>
+                    <div className="form-control mt-2">
+                    <p>Don't have any account? <br /> Please<Link className='btn btn-active btn-link' to='/register'>Register</Link> </p>
                     </div>
                 </Form>
                 </div>

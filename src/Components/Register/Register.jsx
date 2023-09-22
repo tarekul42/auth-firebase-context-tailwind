@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form } from 'react-router-dom';
+import { Form, Link } from 'react-router-dom';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import app from '../../firebase/firebase.config'
 
@@ -57,6 +57,9 @@ const Register = () => {
                     </div>
                     <div className="form-control mt-6">
                     <button type="submit" className="btn btn-primary">Register</button>
+                    </div>
+                    <div className="form-control mt-2">
+                    <p>Already have an account? Please<Link className='btn btn-active btn-link' to='/login'>Login</Link> </p>
                     </div>
                 </Form>
                 </div>
