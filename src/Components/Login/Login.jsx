@@ -1,12 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Form, Link } from 'react-router-dom';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import app from '../../firebase/firebase.config';
-
-const auth = getAuth(app);
+import { AuthContext } from '../../Providers/AuthProviders';
 
 const Login = () => {
 
+    const {signIn} = useContext(AuthContext);
 
     const handleLogin = event =>{
         event.preventDefault();
@@ -15,7 +13,7 @@ const Login = () => {
         const password = event.target.password.value;
         console.log(name, email, password);
 
-        signInWithEmailAndPassword(auth, email, password)
+        signIn(email, password)
         .then((userCredential) => {
           const user = userCredential.user;
           console.log(user);

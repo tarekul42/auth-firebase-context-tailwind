@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Form, Link } from 'react-router-dom';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import app from '../../firebase/firebase.config'
-
-const auth = getAuth(app)
+import { AuthContext } from '../../Providers/AuthProviders';
 
 const Register = () => {
+
+    const {user, createUser} = useContext(AuthContext);
+
+    console.log(createUser);
 
     const handleRegister = event =>{
         event.preventDefault();
@@ -14,10 +15,11 @@ const Register = () => {
         const password = event.target.password.value;
         console.log(name, email, password);
 
-        createUserWithEmailAndPassword(auth, email, password)
+        createUser(email, password)
         .then((userCredential) => {
-          const user = userCredential.user;
-          console.log(user);
+          const loggedUser = userCredential.user;
+          console.log(loggedUser);
+          Form.reset();
         })
         .catch((error) => {
           const errorMessage = error.message;
