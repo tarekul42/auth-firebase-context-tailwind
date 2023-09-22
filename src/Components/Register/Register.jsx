@@ -1,5 +1,9 @@
 import React from 'react';
 import { Form } from 'react-router-dom';
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import app from '../../firebase/firebase.config'
+
+const auth = getAuth(app)
 
 const Register = () => {
 
@@ -9,6 +13,17 @@ const Register = () => {
         const email = event.target.email.value;
         const password = event.target.password.value;
         console.log(name, email, password);
+
+        createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorMessage = error.message;
+          console.log(errorMessage);
+        });
+
     }
 
     return (
