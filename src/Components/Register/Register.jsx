@@ -19,7 +19,7 @@ const Register = () => {
         .then((userCredential) => {
           const loggedUser = userCredential.user;
           console.log(loggedUser);
-          Form.reset();
+          event.target.reset();
         })
         .catch((error) => {
           const errorMessage = error.message;

@@ -1,8 +1,6 @@
-import React, { useContext } from 'react';
-import { AuthContext } from '../../Providers/AuthProviders';
+import React from 'react';
 
 const Home = () => {
-    // const {user} = useContext(AuthContext)
     return (
         <div className='text-center'>
             {/* this is {user && <span>{user.displayName}</span>} */}

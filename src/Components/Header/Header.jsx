@@ -1,7 +1,17 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from '../../Providers/AuthProviders';
 
 const Header = () => {
+
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        logOut()
+        .then(() => {})
+        .catch(error => console.error(error))
+    }
+
     return (
         <div className="navbar bg-base-100">
         <div className="navbar-start">
@@ -13,7 +23,6 @@ const Header = () => {
                 <li><NavLink to='/'>Home</NavLink></li>
                 <li><NavLink to='/login'>Login</NavLink></li>
                 <li><NavLink to='/register'>Register</NavLink></li>
-                <li><a>Item 3</a></li>
             </ul>
             </div>
             <a className="btn btn-ghost normal-case text-xl">React Context</a>
@@ -21,9 +30,20 @@ const Header = () => {
         <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1">
             <li><NavLink to='/'>Home</NavLink></li>
+            <li><NavLink to='/orders'>Orders</NavLink></li>
+            {user && <li><NavLink to='/profile'>Profile</NavLink></li>}
             <li><NavLink to='/login'>Login</NavLink></li>
             <li><NavLink to='/register'>Register</NavLink></li>
             </ul>
+        {
+            user ?
+            <>
+            <span>{user.email}</span>
+            <button onClick={handleLogOut} className='btn btn-xs'>Sign out</button>
+            </>
+            : 
+            <Link to='/login'>Login</Link>
+        }
         </div>
         <div className="navbar-end">
         <div className="dropdown dropdown-end">
